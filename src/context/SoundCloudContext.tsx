@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
 export const SoundCloudContext = React.createContext(null);
 
 const client = axios.create({
@@ -11,10 +12,9 @@ const client = axios.create({
 });
 
 const clientConcerts = axios.create({
-  baseURL: "https://concerts-artists-events-tracker.p.rapidapi.com",
-  headers: {
-    "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
-    "X-RapidAPI-Host": import.meta.env.VITE_RAPID_API_HOST_CONCERTS,
+  baseURL: "https://app.ticketmaster.com",
+  params: {
+    apikey: import.meta.env.VITE_API_KEY_CONCERTS,
   },
 });
 
@@ -47,10 +47,10 @@ export const SoundCloudProvider = ({
   };
 
   const searchConcerts = async (searchedConcert) => {
-    const responseConcert = await clientConcerts.get("/venue", {
+    const responseConcert = await clientConcerts.get("/discovery/v2/events", {
       params: {
-        name: searchedConcert,
-        page: "1",
+        keyword: searchedConcert,
+        size: 100,
       },
     });
     console.log(responseConcert, "responseConcert");
