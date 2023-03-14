@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ConcertModal from "../pages/ConcertModal";
 
 export const SoundCloudContext = React.createContext(null);
 
+// predani klicu z api portalu + nastaveni hlavni url
 const client = axios.create({
   baseURL: "https://soundcloud-scraper.p.rapidapi.com",
   headers: {
@@ -11,6 +13,7 @@ const client = axios.create({
   },
 });
 
+// predani klice z odlisneho api portalu pres params + nastaveni hlavni url
 const clientConcerts = axios.create({
   baseURL: "https://app.ticketmaster.com",
   params: {
@@ -23,9 +26,12 @@ export const SoundCloudProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  // nastaveni usestatu
   const [tracks, setTracks] = useState({});
   const [album, setAlbum] = useState({});
   const [concerts, setConcerts] = useState({});
+
+  // api call , queryinput je vyhledavana hodnota, napr.bad guy
   const searchTrack = async (queryInput) => {
     const response = await client.get("/v1/search/tracks", {
       params: {
@@ -36,6 +42,7 @@ export const SoundCloudProvider = ({
     setTracks(response.data);
   };
 
+  // api call , vyhledavana hodnota je playlist.url
   const searchAlbum = async () => {
     const response = await client.get("v1/playlist/tracks", {
       params: {
@@ -46,6 +53,7 @@ export const SoundCloudProvider = ({
     setAlbum(response.data);
   };
 
+  // api call, vyhledavana hodnota searchedconcert
   const searchConcerts = async (searchedConcert) => {
     const responseConcert = await clientConcerts.get("/discovery/v2/events", {
       params: {

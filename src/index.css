@@ -1,7 +1,9 @@
+/*globalni styly*/
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  width: 100%;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,6 +16,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
+/*oznaceni mysi*/
 a {
   font-weight: 5;
   color: #646cff;
@@ -25,35 +28,19 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
+  padding: 1rem;
 }
 
 h1 {
-  font-size: 8.2em;
+  font-size: 5.2em;
   line-height: 1.1;
+  text-align: center;
+  text-shadow: grey 0px 0px 15px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
+/*nastaveni aplikace pri light modu*/
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

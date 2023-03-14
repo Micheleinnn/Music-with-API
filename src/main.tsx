@@ -9,6 +9,8 @@ import { SoundCloudProvider } from "./context/SoundCloudContext";
 import Concerts from "./pages/Concerts";
 // import NotFound from "./pages/NotFound";
 import Error from "./pages/Error";
+import ConcertModal from "./pages/ConcertModal";
+
 const router = createBrowserRouter([
   {
     path: "/",
